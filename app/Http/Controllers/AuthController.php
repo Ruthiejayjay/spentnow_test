@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Passport\HasApiTokens;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user.
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -32,5 +37,30 @@ class AuthController extends Controller
             'message' => 'User registered successfully.',
             'user' => $user,
         ], 201);
+    }
+
+    /**
+     * Authenticate the user and issue a token.
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'message' => 'Invalid credentials'
+            ], 401);
+        }
+
+        $user = Auth::user();
+        $token = $user->createToken('authToken')->accessToken;
+
+        return response()->json([
+            'user' => $user,
+            'access_token' => $token,
+        ], 200);
     }
 }
