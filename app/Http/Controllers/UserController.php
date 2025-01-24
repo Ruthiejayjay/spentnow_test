@@ -14,6 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->authorizeAdmin();
         return response()->json(User::all(), 200);
     }
 
@@ -22,6 +23,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorizeAdmin();
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -40,15 +42,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
-        }
-
-        if (auth()->user()->role !== 'admin' && auth()->id() !== $user->id) {
-            return response()->json(['message' => 'Unauthorized.'], 403);
-        }
+        $user = $this->findUser($id);
+        $this->authorizeUserOrAdmin($user);
 
         return response()->json($user, 200);
     }
@@ -58,15 +53,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        if (!$user) {
-            return response()->json(['message' => 'User not found.'], 404);
-        }
-
-        // Ensure users can only update their own profile unless they're admins
-        if (auth()->user()->role !== 'admin' && auth()->id() !== $user->id) {
-            return response()->json(['message' => 'Unauthorized.'], 403);
-        }
+        $user = $this->findUser($id);
+        $this->authorizeUserOrAdmin($user);
 
         $validatedData = $request->validate([
             'name' => 'sometimes|string|max:255',
@@ -89,12 +77,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $this->authorizeAdmin();
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found.'], 404);
-        }
-
+        $user = $this->findUser($id);
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully.'], 200);
@@ -105,19 +90,50 @@ class UserController extends Controller
      */
     public function updateRole(Request $request, $id)
     {
-        $request->validate([
+        $this->authorizeAdmin();
+
+        $validatedData = $request->validate([
             'role' => 'required|string|in:admin,user',
         ]);
 
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json(['message' => 'User not found.'], 404);
-        }
-
-        $user->role = $request->role;
+        $user = $this->findUser($id);
+        $user->role = $validatedData['role'];
         $user->save();
 
         return response()->json(['message' => 'User role updated successfully.', 'user' => $user], 200);
+    }
+
+    /**
+     * Helper: Authorize the request for admin users.
+     */
+    private function authorizeAdmin()
+    {
+        if (auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized.');
+        }
+    }
+
+    /**
+     * Helper: Authorize the request for the user or admin.
+     */
+    private function authorizeUserOrAdmin(User $user)
+    {
+        if (auth()->user()->role !== 'admin' && auth()->id() !== $user->id) {
+            abort(403, 'Unauthorized.');
+        }
+    }
+
+    /**
+     * Helper: Find a user by ID or fail with a 404 response.
+     */
+    private function findUser($id): User
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            abort(404, 'User not found.');
+        }
+
+        return $user;
     }
 }

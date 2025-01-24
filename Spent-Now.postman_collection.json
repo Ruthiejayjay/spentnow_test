@@ -1,0 +1,1801 @@
+{
+	"info": {
+		"_postman_id": "f7341065-16b6-457e-9e5e-f4cb5b0654b9",
+		"name": "Spent-Now",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17049297"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n    \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "validation-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n   \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Payment Required",
+							"code": 402,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 16:52:17 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test User2\",\r\n    \"email\": \"test2@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n   \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 16:53:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully.\",\n    \"user\": {\n        \"name\": \"Test User2\",\n        \"email\": \"test2@test.com\",\n        \"role\": \"user\",\n        \"updated_at\": \"2025-01-23T16:53:14.000000Z\",\n        \"created_at\": \"2025-01-23T16:53:14.000000Z\",\n        \"id\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\": \"test@test.com\",\r\n    \"password\": \"P@$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "validation-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 18:52:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"The email field is required. (and 1 more error)\",\n    \"errors\": {\n        \"email\": [\n            \"The email field is required.\"\n        ],\n        \"password\": [\n            \"The password field is required.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "error-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"email\": \"test1@test.com\",\r\n    \"password\": \"P@$$w0rd1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 19:03:32 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Invalid credentials\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n     \"email\": \"test@test.com\",\r\n    \"password\": \"P@$$w0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Jan 2025 19:06:28 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"id\": 4,\n        \"name\": \"Test User\",\n        \"email\": \"test@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"user\",\n        \"created_at\": \"2025-01-23T18:59:37.000000Z\",\n        \"updated_at\": \"2025-01-23T18:59:37.000000Z\"\n    },\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzU1MGY3ZmI4YjdhOThmOTVmMTJmYmQwY2FhY2JkOWM4OWFhYmVlMjk3NTgzZjhmMjQyZmMwYTcyNjQ3YjBhMDFlMmY5ODlhNDVjMjFkZTciLCJpYXQiOjE3Mzc2NTkxODcuMzA5MDk1LCJuYmYiOjE3Mzc2NTkxODcuMzA5MTEyLCJleHAiOjE3NjkxOTUxODUuNzM4ODYzLCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.lpl5A9e8YETcW5ijQ098FNQFuFPtW0YzmniXGTNQHxNkqJyC6lfBQ1LrBgX07_1k6r3zvKW5WgZ1mFLHwOdIZLUHId1DZaLH_Qbf6Vbe-zVgYQ7NV1r-r8q9RwIxJVW4q4BpMEu8uj-wYXNQ7dbDCoFnH3DYbTMUxRL0wcPbQSpUlp3yh7AiG0pX4LHa5k70uisjkpcGZpUu5jQxB3_18gPjso23pyfuD2WSQ47Aw39WlexiPK6oeqPRkU2cK3FLWRDO5nyZFhogg5yIeAX4HCMAY-yKDQKKyosMu3Xkb-nJouNh2OBVGx4NkZ6tXVsIfk5eU1Aw_e489pu1W0f-G0nPzEPT34EMorfR45_YY6P6bBPtYY-UY4ZK-cXHNfbYbn6OeDWonpqkyawqrL1QHLYhArGtO72lLQzZx4IrpGF_IxrMLNtBrC9jUCv-b4jx6xi7xj0oxBvy11pjm8tCfvb1phMF18CcV6_C19UW9veSp1ojdWnD95uz_UOhCzXzRmrG6fEFutktrE8PpFzKHxXS8hxNp7_NEKM9GqaMmAFtkMZrQOeRvdF01zokXmee3Va8M9CRlNhFq1CLUEL-d7xy1QStOyw6GJq0Nxo4NSLJwijWhBiTjRoA3vGv32YzfdrO4-ZVSzVHzzLEHXuCysyzb1V1fzp_OApU0zWe-6w\"\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYzlkMDdkZGVkMzlhN2JiODA5YmM5ODczMWFmOGRmZjYyODFjNmZlZDUwMDA2MTE5ZDA1ODQ5YTNhMDhlYTNiOWZmMWRkNTQ2Mjc5ZjJmMGEiLCJpYXQiOjE3Mzc3MTMxMDIuNzIyMzEsIm5iZiI6MTczNzcxMzEwMi43MjIzMTUsImV4cCI6MTc2OTI0OTEwMi43MDEwNTYsInN1YiI6IjQiLCJzY29wZXMiOltdfQ.l-wd52fSmEmBjcfruzdEQiLg24kYFp3p1a-4qnsj7v5F9IQX_bI7aMW20gYWp32tX42eGuriPBokqcStySaUqrd9EyuCm8usWouimprdm2LiU2PQrL7kFBKtEqeCvVACIK3huDvBp_eNGDV0w_zUtUSyADtLWkZiirzRcNe_Jng-8A-6SEaXUWJsA0nxuy2aK05dRFh63X0_DWJY7xOZEaYVjbkUzhaH9rAZdaeX8hBDIv9u9xaxz2sbM-lCCOstIY2kymNdAnvOnueTpf8bYrEIyHwJtuZjzZPT8JQ7qG1yq0eb25ygqjKGVca3lmXv6buXe16WEnZ4DCA0gRS3u2qnQfh9-lrCUeAiugyC70gGr_DeGA-ICEBe_2bRVWLQtWOk1Lhw3wiAV0b9KooKiMT-nipo8210qzJrKy1T-Jf-s5A8RAOl0d5iWudNwcjnRvuBkB5d0BQFZavsSxlXw9wHziEiL_tc-c7XS_URXjbAzYVNdDBbvJjlKcawJVGSUgFEoUGwi4L98CleWMBDMF4trXqCpUVNfdOw9tsQApc1WAQfqvIwA0Fw6g9Vb2L1o_UCCWoyx5i47zxxcWnPtl1LcH2CUPNyBs_SS0QEKV4cilz_La1ZURsbXfTMrTd70wrUJ-LnpXf39BMyt9d114FhvGybr7gv7wSd73KP9tE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "auth-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:03:46 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:05:25 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User logged out successfully.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmRmYjMxYTc4ZTBjNzI1ODI4NmM1MTBlMTgxZDIyYWMyNDc4ODcyYjcyNWZlY2QxMjk1NjYyYjEyMjNmYTlmMzQ2MzUzNTBkYjhmNDllMjgiLCJpYXQiOjE3Mzc3MTUxNTAuOTU5MTg4LCJuYmYiOjE3Mzc3MTUxNTAuOTU5MTkxLCJleHAiOjE3NjkyNTExNTAuOTQ4NTg3LCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.PZkytWac67VWllTJF5lUGSkrTtSo4_pZ0D_D1cvuKz6fpt2ECd5vQxYeI1zLaLx0KMT3j7SQh18vkljqtdrccoBHMTUwtwCqucZQC34tdTcA1V7vLhL_dyRvYS29TPLgTUfOkwYHBgbdIlpyG7hnWWgxQIwN-zIlDIEqs-21NqWck-oo5Cj4ij4jqvszJTYAw6BfR9caNNsSIcDInCSq-metNl4l6KXRalZLXctYIhh0Btv081QRPhENVxO1buagCtSNyWUuI0nc4KjzvmW_UtRyWKgoFienb5sre1zVP6R1L8inhrTydTofds8vEVr8owJXUeXA03r0KSkZnTYCQeyk0iyWtLGcYHLnjf2ghjV7m-BbQlYy6_i1squq7N2-t6oh11sotxM7gDTwNNltnVV3i7zoPjcnqv7WqzBLdd0ORwIVpKEo5-mSw-GLu5JCgw3gP-mPB2aIh7XunSyNekdfztyzLfJiqhNN3vugWPGUDufR7FxKVmTtulT_0BBMAlxRDmisCjeLaN5SvhF1NMYzUvX9puKdSiPHeX8EWjGYah8QDez4gpaKNaOHS27I4i705iExFC5KQ8I67OQH-4_znenxr2NIX4v_7PsiaZkr2YB-2pYvGePdIpw5s-awhRF7C7Yrh2WBT1vomyN4NkftoXXNIwR04vv5FWDHKVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authorization-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:37:41 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized. Admin access is required.\"\n}"
+						},
+						{
+							"name": "auth error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:38:50 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "suucess-response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:39:29 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"name\": \"Test User\",\n        \"email\": \"test@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"admin\",\n        \"created_at\": \"2025-01-23T18:59:37.000000Z\",\n        \"updated_at\": \"2025-01-23T18:59:37.000000Z\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Test User\",\n        \"email\": \"test2@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"user\",\n        \"created_at\": \"2025-01-24T10:34:36.000000Z\",\n        \"updated_at\": \"2025-01-24T10:34:36.000000Z\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Test User\",\n        \"email\": \"test3@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"user\",\n        \"created_at\": \"2025-01-24T10:34:45.000000Z\",\n        \"updated_at\": \"2025-01-24T10:34:45.000000Z\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWQzM2NmYWExMTcxOGE4OTQ3Yjc2YmE3MzgwYjk2ZGQ3YzNmZGUzYTI0ZTI2MWNlNWQ0ODc5ZDM0NTViNTQ5MGRhN2YzZjU1MWM4MWUzODUiLCJpYXQiOjE3Mzc3MTU5MzMuNzQzMDgzLCJuYmYiOjE3Mzc3MTU5MzMuNzQzMDg5LCJleHAiOjE3NjkyNTE5MzMuNzI2MzU5LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.m76TUIKXCfRyjK9r2G4UC7XGhNsFzxA-RkEG1-gn7zVhY0NecTB_1tcx1AdecqFi9r9ryith-qnLXPV3x8UvXKoCRW7cL-xQONtthFCCHce7sZd1MDPY5SdESaJdu-GGS2bJp09hnGpxHhxPw3GMO9r-Q9Cs3aybDEqhTqys7878AjTXlTJW_Hrr48M5oVgTYI1CEASAH2j0LA9Uq3bGYiuJwlTMN1dBwZYFMeStwMwe77AnOuA3ojZPVKhDOztc5uu8S6DMQJyI_gSkF006tt4tw9JIUu3Azf7Alm7NpaPVESudUqVawHNUozgEWkNbUon9qNQmdCJ4sr2CS_bf2GM9v1zNUhSCCPdHM8CgP5Dk0MDoAUoLX8muTPhbAi7AQky-KA9KQ11YyFnaEQleHrVRvXXvOudY5YAVDl0S4xA1VWjRLix0Y5i9WgYFsuQsyuc2MhXr9cPRuNAJKBnaLQwE11wjU4U0QQ1ayXD9SIOBaHmCIgTfqZa04i7TIrUdINmgaUtJ-jqrMB18HSG18aY8OsfdvqAISIh1J6DpltLf6NPs5s5c6KJVr_2yNozLBxHkw_PR9Vy9OvyL51x2PnT38rsKP89jINmuOTlfu5ssgNRf6Ickmnzw7lmTS3oXVxuQE4L8dWF8O-BWE0eJVGk01oTyr4s8LpazVasAMOk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "auth-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:50:52 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "autorization-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:51:38 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 10:52:31 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 6,\n    \"name\": \"Test User\",\n    \"email\": \"test3@test.com\",\n    \"email_verified_at\": null,\n    \"role\": \"user\",\n    \"created_at\": \"2025-01-24T10:34:45.000000Z\",\n    \"updated_at\": \"2025-01-24T10:34:45.000000Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYWQzM2NmYWExMTcxOGE4OTQ3Yjc2YmE3MzgwYjk2ZGQ3YzNmZGUzYTI0ZTI2MWNlNWQ0ODc5ZDM0NTViNTQ5MGRhN2YzZjU1MWM4MWUzODUiLCJpYXQiOjE3Mzc3MTU5MzMuNzQzMDgzLCJuYmYiOjE3Mzc3MTU5MzMuNzQzMDg5LCJleHAiOjE3NjkyNTE5MzMuNzI2MzU5LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.m76TUIKXCfRyjK9r2G4UC7XGhNsFzxA-RkEG1-gn7zVhY0NecTB_1tcx1AdecqFi9r9ryith-qnLXPV3x8UvXKoCRW7cL-xQONtthFCCHce7sZd1MDPY5SdESaJdu-GGS2bJp09hnGpxHhxPw3GMO9r-Q9Cs3aybDEqhTqys7878AjTXlTJW_Hrr48M5oVgTYI1CEASAH2j0LA9Uq3bGYiuJwlTMN1dBwZYFMeStwMwe77AnOuA3ojZPVKhDOztc5uu8S6DMQJyI_gSkF006tt4tw9JIUu3Azf7Alm7NpaPVESudUqVawHNUozgEWkNbUon9qNQmdCJ4sr2CS_bf2GM9v1zNUhSCCPdHM8CgP5Dk0MDoAUoLX8muTPhbAi7AQky-KA9KQ11YyFnaEQleHrVRvXXvOudY5YAVDl0S4xA1VWjRLix0Y5i9WgYFsuQsyuc2MhXr9cPRuNAJKBnaLQwE11wjU4U0QQ1ayXD9SIOBaHmCIgTfqZa04i7TIrUdINmgaUtJ-jqrMB18HSG18aY8OsfdvqAISIh1J6DpltLf6NPs5s5c6KJVr_2yNozLBxHkw_PR9Vy9OvyL51x2PnT38rsKP89jINmuOTlfu5ssgNRf6Ickmnzw7lmTS3oXVxuQE4L8dWF8O-BWE0eJVGk01oTyr4s8LpazVasAMOk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "auth-error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 11:49:09 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test User3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 11:51:05 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User updated successfully.\",\n    \"user\": {\n        \"id\": 6,\n        \"name\": \"Test User3\",\n        \"email\": \"test3@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"user\",\n        \"created_at\": \"2025-01-24T10:34:45.000000Z\",\n        \"updated_at\": \"2025-01-24T11:51:05.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmRmYjMxYTc4ZTBjNzI1ODI4NmM1MTBlMTgxZDIyYWMyNDc4ODcyYjcyNWZlY2QxMjk1NjYyYjEyMjNmYTlmMzQ2MzUzNTBkYjhmNDllMjgiLCJpYXQiOjE3Mzc3MTUxNTAuOTU5MTg4LCJuYmYiOjE3Mzc3MTUxNTAuOTU5MTkxLCJleHAiOjE3NjkyNTExNTAuOTQ4NTg3LCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.PZkytWac67VWllTJF5lUGSkrTtSo4_pZ0D_D1cvuKz6fpt2ECd5vQxYeI1zLaLx0KMT3j7SQh18vkljqtdrccoBHMTUwtwCqucZQC34tdTcA1V7vLhL_dyRvYS29TPLgTUfOkwYHBgbdIlpyG7hnWWgxQIwN-zIlDIEqs-21NqWck-oo5Cj4ij4jqvszJTYAw6BfR9caNNsSIcDInCSq-metNl4l6KXRalZLXctYIhh0Btv081QRPhENVxO1buagCtSNyWUuI0nc4KjzvmW_UtRyWKgoFienb5sre1zVP6R1L8inhrTydTofds8vEVr8owJXUeXA03r0KSkZnTYCQeyk0iyWtLGcYHLnjf2ghjV7m-BbQlYy6_i1squq7N2-t6oh11sotxM7gDTwNNltnVV3i7zoPjcnqv7WqzBLdd0ORwIVpKEo5-mSw-GLu5JCgw3gP-mPB2aIh7XunSyNekdfztyzLfJiqhNN3vugWPGUDufR7FxKVmTtulT_0BBMAlxRDmisCjeLaN5SvhF1NMYzUvX9puKdSiPHeX8EWjGYah8QDez4gpaKNaOHS27I4i705iExFC5KQ8I67OQH-4_znenxr2NIX4v_7PsiaZkr2YB-2pYvGePdIpw5s-awhRF7C7Yrh2WBT1vomyN4NkftoXXNIwR04vv5FWDHKVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "not-found-error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"7"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:01:19 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User not found.\"\n}"
+						},
+						{
+							"name": "authorization-error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:02:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized. Admin access is required.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/6",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:02:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User deleted successfully.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update-role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmRmYjMxYTc4ZTBjNzI1ODI4NmM1MTBlMTgxZDIyYWMyNDc4ODcyYjcyNWZlY2QxMjk1NjYyYjEyMjNmYTlmMzQ2MzUzNTBkYjhmNDllMjgiLCJpYXQiOjE3Mzc3MTUxNTAuOTU5MTg4LCJuYmYiOjE3Mzc3MTUxNTAuOTU5MTkxLCJleHAiOjE3NjkyNTExNTAuOTQ4NTg3LCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.PZkytWac67VWllTJF5lUGSkrTtSo4_pZ0D_D1cvuKz6fpt2ECd5vQxYeI1zLaLx0KMT3j7SQh18vkljqtdrccoBHMTUwtwCqucZQC34tdTcA1V7vLhL_dyRvYS29TPLgTUfOkwYHBgbdIlpyG7hnWWgxQIwN-zIlDIEqs-21NqWck-oo5Cj4ij4jqvszJTYAw6BfR9caNNsSIcDInCSq-metNl4l6KXRalZLXctYIhh0Btv081QRPhENVxO1buagCtSNyWUuI0nc4KjzvmW_UtRyWKgoFienb5sre1zVP6R1L8inhrTydTofds8vEVr8owJXUeXA03r0KSkZnTYCQeyk0iyWtLGcYHLnjf2ghjV7m-BbQlYy6_i1squq7N2-t6oh11sotxM7gDTwNNltnVV3i7zoPjcnqv7WqzBLdd0ORwIVpKEo5-mSw-GLu5JCgw3gP-mPB2aIh7XunSyNekdfztyzLfJiqhNN3vugWPGUDufR7FxKVmTtulT_0BBMAlxRDmisCjeLaN5SvhF1NMYzUvX9puKdSiPHeX8EWjGYah8QDez4gpaKNaOHS27I4i705iExFC5KQ8I67OQH-4_znenxr2NIX4v_7PsiaZkr2YB-2pYvGePdIpw5s-awhRF7C7Yrh2WBT1vomyN4NkftoXXNIwR04vv5FWDHKVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/5/role",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"5",
+								"role"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authorization-error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/5/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"5",
+										"role"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:10:57 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized. Admin access is required.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/5/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										"5",
+										"role"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:11:39 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User role updated successfully.\",\n    \"user\": {\n        \"id\": 5,\n        \"name\": \"Test User\",\n        \"email\": \"test2@test.com\",\n        \"email_verified_at\": null,\n        \"role\": \"admin\",\n        \"created_at\": \"2025-01-24T10:34:36.000000Z\",\n        \"updated_at\": \"2025-01-24T12:11:39.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmRmYjMxYTc4ZTBjNzI1ODI4NmM1MTBlMTgxZDIyYWMyNDc4ODcyYjcyNWZlY2QxMjk1NjYyYjEyMjNmYTlmMzQ2MzUzNTBkYjhmNDllMjgiLCJpYXQiOjE3Mzc3MTUxNTAuOTU5MTg4LCJuYmYiOjE3Mzc3MTUxNTAuOTU5MTkxLCJleHAiOjE3NjkyNTExNTAuOTQ4NTg3LCJzdWIiOiI0Iiwic2NvcGVzIjpbXX0.PZkytWac67VWllTJF5lUGSkrTtSo4_pZ0D_D1cvuKz6fpt2ECd5vQxYeI1zLaLx0KMT3j7SQh18vkljqtdrccoBHMTUwtwCqucZQC34tdTcA1V7vLhL_dyRvYS29TPLgTUfOkwYHBgbdIlpyG7hnWWgxQIwN-zIlDIEqs-21NqWck-oo5Cj4ij4jqvszJTYAw6BfR9caNNsSIcDInCSq-metNl4l6KXRalZLXctYIhh0Btv081QRPhENVxO1buagCtSNyWUuI0nc4KjzvmW_UtRyWKgoFienb5sre1zVP6R1L8inhrTydTofds8vEVr8owJXUeXA03r0KSkZnTYCQeyk0iyWtLGcYHLnjf2ghjV7m-BbQlYy6_i1squq7N2-t6oh11sotxM7gDTwNNltnVV3i7zoPjcnqv7WqzBLdd0ORwIVpKEo5-mSw-GLu5JCgw3gP-mPB2aIh7XunSyNekdfztyzLfJiqhNN3vugWPGUDufR7FxKVmTtulT_0BBMAlxRDmisCjeLaN5SvhF1NMYzUvX9puKdSiPHeX8EWjGYah8QDez4gpaKNaOHS27I4i705iExFC5KQ8I67OQH-4_znenxr2NIX4v_7PsiaZkr2YB-2pYvGePdIpw5s-awhRF7C7Yrh2WBT1vomyN4NkftoXXNIwR04vv5FWDHKVk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test User4\",\r\n    \"email\": \"test4@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n    \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authorization-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test User4\",\r\n    \"email\": \"test4@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n    \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:27:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized. Admin access is required.\"\n}"
+						},
+						{
+							"name": "success-response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test User4\",\r\n    \"email\": \"test4@test.com\",\r\n    \"password\": \"P@$$w0rd\",\r\n    \"password_confirmation\": \"P@$$w0rd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.22.0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.19"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Jan 2025 12:28:29 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User created successfully.\",\n    \"user\": {\n        \"name\": \"Test User4\",\n        \"email\": \"test4@test.com\",\n        \"updated_at\": \"2025-01-24T12:28:29.000000Z\",\n        \"created_at\": \"2025-01-24T12:28:29.000000Z\",\n        \"id\": 8\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
