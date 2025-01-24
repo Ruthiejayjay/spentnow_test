@@ -20,10 +20,14 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:api')->group(function () {
     Route::controller(UserController::class)->group(function () {
-        
+
         // Admin Routes
         Route::middleware(AdminMiddleware::class)->group(function () {
             Route::get('users', 'index')->name('users.index');
         });
+
+        // Authenticated User Routes
+        Route::get('users/{user}', 'show')->name('users.show');
+        Route::put('users/{user}', 'update')->name('users.update');
     });
 });
