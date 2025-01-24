@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -14,6 +15,24 @@ class UserController extends Controller
     public function index()
     {
         return response()->json(User::all(), 200);
+    }
+
+    /**
+     * Create a user (Admin Only).
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $user = User::create($validatedData);
+
+        return response()->json(['message' => 'User created successfully.', 'user' => $user], 201);
     }
 
     /**
