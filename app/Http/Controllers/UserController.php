@@ -63,4 +63,42 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User updated successfully.', 'user' => $user], 200);
     }
+
+    /**
+     * Delete a user (Admin Only).
+     */
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found.'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully.'], 200);
+    }
+
+    /**
+     * Update a user's role (Admin Only).
+     */
+    public function updateRole(Request $request, $id)
+    {
+        $request->validate([
+            'role' => 'required|string|in:admin,user',
+        ]);
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found.'], 404);
+        }
+
+        $user->role = $request->role;
+        $user->save();
+
+        return response()->json(['message' => 'User role updated successfully.', 'user' => $user], 200);
+    }
 }

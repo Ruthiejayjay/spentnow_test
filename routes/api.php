@@ -24,6 +24,8 @@ Route::middleware('auth:api')->group(function () {
         // Admin Routes
         Route::middleware(AdminMiddleware::class)->group(function () {
             Route::get('users', 'index')->name('users.index');
+            Route::delete('users/{user}', 'destroy')->name('users.destroy');
+            Route::patch('users/{user}/role', 'updateRole')->name('users.updateRole');
         });
 
         // Authenticated User Routes
