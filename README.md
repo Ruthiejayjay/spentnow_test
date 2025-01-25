@@ -1,66 +1,151 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Spent Now Test
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Table of Contents
 
-## About Laravel
+-   [Overview](#overview)
+-   [Dependencies](#dependencies)
+-   [Project Setup](#project-setup)
+-   [Features](#features)
+    -   [Authentication](#authentication)
+    -   [User Management](#user-management)
+-   [Testing](#testing)
+-   [Conclusion](#conclusion)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Spent Now Test** is a simple user management system that includes authentication and role-based access control. It provides RESTful APIs for:
 
-## Learning Laravel
+1. **User registration and login**: Securely register and log in users.
+2. **Token-Based Authentication**: Implemented using Laravel Passport for secure API access.
+3. **Administrative Tasks**: Manage user accounts, roles, and permissions.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The application is designed to enforce role-based permissions, ensuring a secure and efficient system for managing users.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Dependencies
 
-## Laravel Sponsors
+-   **[Laravel](https://laravel.com/docs/11.x)**: A PHP framework for building web applications.
+-   **[Laravel Passport](https://laravel.com/docs/11.x/passport)**: Provides OAuth2 server implementation for API authentication.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Project Setup
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Follow these steps to set up the project locally:
 
-## Contributing
+1. **Install Prerequisites**  
+   Ensure the following are installed on your machine:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    - **[PHP](https://www.php.net/downloads)** (version 8.1 or higher)
+    - **[Composer](https://getcomposer.org/download/)**
 
-## Code of Conduct
+2. **Clone the Repository**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```bash
+    git clone https://github.com/Ruthiejayjay/spentnow_test.git
+    cd spentnow_test
 
-## Security Vulnerabilities
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Set Up Environment File**  
+   Copy the example environment file and update it with your configuration:
+    ```bash
+    cp .env.example .env
+    ```
 
-## License
+-   Create a database for the application.
+-   Update the `.env` file with your database credentials.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Install Dependencies**  
+   Run the following command to install required packages:
+
+    ```php
+    composer install
+    ```
+
+5. **Migrate the Database**  
+   Create the necessary tables in your database by running:
+    ```php
+    php artisan migrate
+    ```
+6. **Set Up Passport Keys**  
+   Generate Laravel Passport client keys for secure token-based authentication:
+    ```php
+    php artisan passport:client –passport
+    ```
+7. **Start the Development Server**  
+   Run the application locally:
+    ```php
+     php artisan serve
+    ```
+    You can now access the application at `http://localhost:8000`.
+
+---
+
+# Features
+
+## **Authentication**
+
+-   Secure user login and registration
+-   Token-based API authentication using Laravel Passport.
+
+### API Endpoints
+
+-   **POST** `/api/auth/register`: Register a new user.
+-   **POST** `/api/auth/login`: Log in and receive an access token.
+-   **POST** `/api/auth/logout`: Revoke the user's access token.
+
+## **User Management**
+
+-   Create, read, update, and delete user accounts.
+-   Role-based access control for managing permissions.
+
+### API Endpoints
+
+-   **GET** `/api/users`: Retrieve all users (Admin only).
+-   **POST** `/api/users`: Create a new user (Admin only).
+-   **GET** `/api/users/{id}`: Retrieve a specific user's profile.
+-   **PUT** `/api/users/{id}`: Update a specific user's profile.
+-   **DELETE** `/api/users/{id}`: Delete a specific user (Admin only).
+-   **PATCH** `/api/users/{id}`: Update a user's role (Admin only).
+
+---
+
+# Testing
+
+### Authentication
+
+Contained in [`AuthenticationTest.php`](tests\Feature\AuthenticationTest.php). These tests cover:
+
+1. Successful register, login and logout.
+2. Validation checks for invalid input.
+3. Error cases, such as incorrect credentials or unauthorized access.
+
+Run the tests using:
+```php
+php artisan test --filter AuthenticationTest
+```
+
+### User Management
+
+Contained in [`UserTest.php`](tests\Feature\UserTest.php). These tests cover:
+
+1. Successful creation, retrieval, updating, and deletion of user accounts.
+2. Validation checks for invalid input.
+3. Error handling for unauthorized actions.
+
+Run the tests using:
+```php
+php artisan test --filter UserTest
+```
+
+---
+
+# Conclusion
+
+The **Spent Now Test** project provides a foundational user management system with secure authentication and robust role-based access control. The application includes well-documented APIs and comprehensive test coverage for critical functionalities.
+
+A **[Postman collection](Spent-Now.postman_collection.json)** is also available for testing the API endpoints. You can import it into your Postman workspace for easy testing of the application's features.
