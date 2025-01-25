@@ -29,7 +29,7 @@ class AuthenticationTest extends TestCase
         $client = $clientRepository->createPersonalAccessClient(
             null,
             'Test Personal Access Client',
-            config('app.url') // Base URL for your test environment
+            config('app.url')
         );
 
         DB::table('oauth_personal_access_clients')->insert([
@@ -149,5 +149,44 @@ class AuthenticationTest extends TestCase
             ->assertJsonStructure(['access_token', 'user']);
 
         $this->assertAuthenticatedAs($user);
+    }
+
+    // -----------------------------------------
+    // Logout Tests
+    // -----------------------------------------
+
+    public function test_user_must_be_authenticated_to_logout()
+    {
+        $response = $this->postJson(route('auth.logout'));
+
+        $response->assertStatus(401)
+            ->assertJsonFragment(['message' => 'Unauthenticated.']);
+    }
+
+    public function test_authenticated_user_can_logout_successfully()
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        $token = $user->createToken('Test Token')->accessToken;
+
+        $this->assertDatabaseHas('oauth_access_tokens', [
+            'id' => $user->tokens->first()->id,
+            'revoked' => false,
+        ]);
+
+        $response = $this->postJson(route('auth.logout'), [], [
+            'Authorization' => 'Bearer ' . $token,
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['message' => 'User logged out successfully.']);
+
+        $this->assertDatabaseHas('oauth_access_tokens', [
+            'id' => $user->tokens->first()->id,
+            'revoked' => true,
+        ]);
     }
 }
