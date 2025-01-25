@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
+use Laravel\Passport\ClientRepository;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
@@ -22,6 +24,19 @@ class AuthenticationTest extends TestCase
             'password' => 'password123',
             'password_confirmation' => 'password123',
         ];
+
+        $clientRepository = new ClientRepository();
+        $client = $clientRepository->createPersonalAccessClient(
+            null,
+            'Test Personal Access Client',
+            config('app.url')
+        );
+
+        DB::table('oauth_personal_access_clients')->insert([
+            'client_id' => $client->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     // -----------------------------------------
@@ -86,5 +101,92 @@ class AuthenticationTest extends TestCase
 
         $response->assertStatus(402)
             ->assertJsonValidationErrors(['password']);
+    }
+
+    // -----------------------------------------
+    // Login Tests
+    // -----------------------------------------
+
+    public function test_it_requires_email_and_password_for_login()
+    {
+        $response = $this->postJson(route('auth.login'), []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['email', 'password']);
+    }
+
+    public function test_it_fails_with_invalid_credentials()
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+            'password' => bcrypt('correct-password'),
+        ]);
+
+        $response = $this->postJson(route('auth.login'), [
+            'email' => 'user@example.com',
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertStatus(401)
+            ->assertJsonFragment(['message' => 'Invalid credentials']);
+    }
+
+    public function test_user_can_login_with_valid_credentials()
+    {
+        // Create a user
+        $user = User::factory()->create([
+            'email' => 'test@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        // Send login request
+        $response = $this->postJson(route('auth.login'), [
+            'email' => 'test@example.com',
+            'password' => 'password123',
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJsonStructure(['access_token', 'user']);
+
+        $this->assertAuthenticatedAs($user);
+    }
+
+    // -----------------------------------------
+    // Logout Tests
+    // -----------------------------------------
+
+    public function test_user_must_be_authenticated_to_logout()
+    {
+        $response = $this->postJson(route('auth.logout'));
+
+        $response->assertStatus(401)
+            ->assertJsonFragment(['message' => 'Unauthenticated.']);
+    }
+
+    public function test_authenticated_user_can_logout_successfully()
+    {
+        $user = User::factory()->create([
+            'email' => 'user@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        $token = $user->createToken('Test Token')->accessToken;
+
+        $this->assertDatabaseHas('oauth_access_tokens', [
+            'id' => $user->tokens->first()->id,
+            'revoked' => false,
+        ]);
+
+        $response = $this->postJson(route('auth.logout'), [], [
+            'Authorization' => 'Bearer ' . $token,
+        ]);
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['message' => 'User logged out successfully.']);
+
+        $this->assertDatabaseHas('oauth_access_tokens', [
+            'id' => $user->tokens->first()->id,
+            'revoked' => true,
+        ]);
     }
 }
