@@ -69,7 +69,7 @@ Follow these steps to set up the project locally:
 5. **Migrate the Database**  
    Create the necessary tables in your database by running:
     ```php
-    php artisan migrate
+    php artisan migrate --seed
     ```
 6. **Set Up Passport Keys**  
    Generate Laravel Passport client keys for secure token-based authentication:
