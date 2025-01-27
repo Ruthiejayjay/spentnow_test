@@ -64,6 +64,7 @@ Follow these steps to set up the project locally:
 
     ```php
     composer install
+    php artisan key:generate
     ```
 
 5. **Migrate the Database**  
@@ -74,6 +75,7 @@ Follow these steps to set up the project locally:
 6. **Set Up Passport Keys**  
    Generate Laravel Passport client keys for secure token-based authentication:
     ```php
+    php artisan passport:keys
    php artisan passport:client --personal
     ```
 7. **Start the Development Server**  
