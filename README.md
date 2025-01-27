@@ -74,7 +74,7 @@ Follow these steps to set up the project locally:
 6. **Set Up Passport Keys**  
    Generate Laravel Passport client keys for secure token-based authentication:
     ```php
-    php artisan passport:client –passport
+   php artisan passport:client --personal
     ```
 7. **Start the Development Server**  
    Run the application locally:
